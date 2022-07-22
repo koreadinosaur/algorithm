@@ -1,5 +1,10 @@
 const fs = require("fs");
-const number = fs.readFileSync("example.txt").toString().trim().split("\n");
-const object = {};
-number.map((x) => (object[x % 42] = (object[x % 42] || 0) + 1));
-console.log(Object.keys(object).length);
+const array = fs.readFileSync("example.txt").toString().trim().split("\n");
+const split = array.map((x) => x.split("X"));
+const obj = {};
+for (let i = 1; i < split.length; i++) {
+  split[i].map(
+    (x) => (obj[i] = (obj[i] || 0) + (x.length * (x.length + 1)) / 2)
+  );
+}
+console.log(Object.values(obj).join("\n"));
