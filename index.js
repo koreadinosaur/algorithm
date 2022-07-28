@@ -1,16 +1,8 @@
 const fs = require("fs");
-const number = fs.readFileSync("example.txt").toString().trim();
-let count = 0;
+const string = fs.readFileSync("example.txt").toString().trim();
+const obj = {};
 
-for (let i = 1; i <= number; i++) {
-  if (i < 100) {
-    count++;
-  } else if (
-    i < 1000 &&
-    parseInt((i % 1000) / 100) - parseInt((i % 100) / 10) ===
-      parseInt((i % 100) / 10) - (i % 10)
-  ) {
-    count++;
-  }
+for (let j = 0; j < string.length; j++) {
+  obj[string[j]] = (obj[string[j]] || 0) + 1;
 }
-console.log(count);
+console.log(Object.entries(obj).sort((a, b) => b[1] - a[1]));
