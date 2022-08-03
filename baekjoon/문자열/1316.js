@@ -13,7 +13,6 @@ for (let i = 1; i < example.length; i++) {
       break;
     }
     compare += example[i][j];
-    console.log(compare);
   }
 }
 
