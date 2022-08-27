@@ -22,6 +22,14 @@ function same(array1, array2) {
   }
   return true;
 }
-const arr = [1, 2, 3];
-const arr2 = [1, 4, 9];
+const arr = [1, 2, 1];
+const arr2 = [4, 4, 1];
 console.log(same(arr, arr2));
+
+// for(let i = 0; i< arr1.length ; i++){
+//     let index = arr2.indexOf(arr1[i]**2);
+//     if(index === -1){
+//         return false;
+//     }
+//     arr2.splice(index, 1);
+// }
