@@ -12,6 +12,8 @@ function isSubsequence(firstString, secondString) {
   let i = 0;
   let j = 0;
   while (i < firstString.length) {
+    //refactoring : 여기서 j++은 if문과 else문 둘 다 들어가니까
+    //while문 마지막에 j++ 해줘도 됨.
     if (firstString[i] === secondString[j]) {
       i++;
       j++;

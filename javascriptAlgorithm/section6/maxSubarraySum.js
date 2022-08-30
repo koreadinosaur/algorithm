@@ -17,6 +17,7 @@ function maxSubarraySum(array, length) {
   let firstIndex = 0;
   let lastIndex = length;
   while (lastIndex <= array.length) {
+    //이부분을 리팩토링 해보면, maxOfArray = Math.max(maxOfArray,sumOfArray)
     if (sumOfArray > maxOfArray) {
       maxOfArray = sumOfArray;
     }
