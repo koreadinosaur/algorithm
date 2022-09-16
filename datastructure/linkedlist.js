@@ -19,7 +19,6 @@ class singleLinked {
     할당한다. length도 추가.
     4.   */
     let newNode = new Node(val);
-    console.log("nuewNode : ", newNode);
     if (!this.head) {
       this.head = newNode;
       this.tail = this.head;
@@ -64,14 +63,23 @@ class singleLinked {
     }
     return current;
   }
+  shift() {
+    if (this.head === null) return undefined;
+    let currentHead = this.head;
+    if (this.length === 1) {
+      this.tail = null;
+    }
+    this.head = currentHead.next;
+    this.length--;
+    return currentHead;
+  }
 }
 /* 아니~ 왜 똑같이 따라쳤는데도 안돼????? 환장하겠네 아.. this.head.next가 아니라
 this.tail.next였다... */
 let list = new singleLinked();
 list.push("HELLO");
 list.push("YOU");
-list.push("too");
-list.push("much");
 console.log(list);
-list.pop();
+list.shift();
+list.shift();
 console.log(list);
