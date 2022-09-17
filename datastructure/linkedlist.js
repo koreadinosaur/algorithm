@@ -73,13 +73,42 @@ class singleLinked {
     this.length--;
     return currentHead;
   }
+  unshift(val) {
+    /* 의사코드
+    1. value를 전달받아서 새로운 노드 생성
+    2. head가 있는지 없는지 판별 후 없으면 head와 tail지정
+    3. 있으면 새로운 노드의 next property로 현재 head를 지정 */
+    let newNode = new Node(val);
+    if (this.head === null) {
+      this.head = newNode;
+      this.tail = newNode;
+    } else {
+      newNode.next = this.head;
+      this.head = newNode;
+    }
+    this.length++;
+    return this;
+  }
+  get(index) {
+    /* index를 인자로 받아서 해당 위치의 노드를 출력 */
+    if (index < 0 || index > this.length) return null;
+    let count = 0;
+    let targetNode = this.head;
+    while (count < index) {
+      targetNode = targetNode.next;
+      count++;
+    }
+    return targetNode;
+  }
 }
 /* 아니~ 왜 똑같이 따라쳤는데도 안돼????? 환장하겠네 아.. this.head.next가 아니라
 this.tail.next였다... */
 let list = new singleLinked();
-list.push("HELLO");
-list.push("YOU");
+
 console.log(list);
-list.shift();
-list.shift();
-console.log(list);
+list.unshift("Hi");
+list.push("I");
+list.push("am");
+list.push("thirty two");
+list.push("years old");
+console.log(list.get(3));
