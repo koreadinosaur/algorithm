@@ -116,6 +116,30 @@ class singleLinked {
     }
     return false;
   }
+  insert(index, value) {
+    /* 1. index가 0보다 작거나, length보다 크면 false반환
+    2. index가 length와 같으면 push메서드 호출.
+    3. index가 0이면 unshift 호출
+    4. 새로운 Node를 생성하고, index -1에 위치한 노드가 새로운 Node를
+    next로 가리키게끔 한다.
+    5. length는 + 1, return 값은 true or false
+    6. push()나 unshift()를 사용했을 때 true or false를 반환하도록 해야함.*/
+    if (index < 0 || index > this.length) return false;
+    const newNode = new Node(value);
+    /* 이 조건문을 return !!this.unshift(newNode) 이렇게 바꿔줄 수도 있음. */
+    if (index === 0) {
+      this.unshift(newNode);
+      return true;
+    } else if (index === this.length) {
+      this.push(newNode);
+      return true;
+    }
+    let previousIndex = this.get(index - 1);
+    newNode.next = previousIndex.next;
+    previousIndex.next = newNode;
+    this.length++;
+    return true;
+  }
 }
 /* 아니~ 왜 똑같이 따라쳤는데도 안돼????? 환장하겠네 아.. this.head.next가 아니라
 this.tail.next였다... */
@@ -127,5 +151,5 @@ list.push("I");
 list.push("am");
 list.push("thirty two");
 list.push("years old");
-console.log(list.set(-1, "twenty five"));
-console.log(list);
+console.log(list.insert(1, "everyone"));
+console.log(list.head.next);
