@@ -100,6 +100,22 @@ class singleLinked {
     }
     return targetNode;
   }
+  set(index, value) {
+    /* 해당 index의 value를 업데이트
+    1. get 함수를 이용해서 해당 index에 위치한 노드 반환
+    2. */
+    let currentNode = this.get(index);
+    /*이건 내가 쓴 코드..
+     if (!currentNode) return false;
+    currentNode.val = value;
+    return true; 
+    */
+    if (currentNode) {
+      currentNode.val = value;
+      return true;
+    }
+    return false;
+  }
 }
 /* 아니~ 왜 똑같이 따라쳤는데도 안돼????? 환장하겠네 아.. this.head.next가 아니라
 this.tail.next였다... */
@@ -111,4 +127,5 @@ list.push("I");
 list.push("am");
 list.push("thirty two");
 list.push("years old");
-console.log(list.get(3));
+console.log(list.set(-1, "twenty five"));
+console.log(list);
