@@ -153,13 +153,33 @@ class singleLinked {
     this.length--;
     return targetNodeOnIndex;
   }
+  reverse() {
+    let tempHead = this.head;
+    this.head = this.tail;
+    this.tail = tempHead;
+    let index = 1;
+    let indexNode = tempHead.next;
+    tempHead.next = null;
+    let previousNode = tempHead;
+    while (index < this.length) {
+      let temp = indexNode;
+      indexNode = indexNode.next;
+      temp.next = previousNode;
+      previousNode = temp;
+      index++;
+    }
+    return this;
+  }
 }
 /* 아니~ 왜 똑같이 따라쳤는데도 안돼????? 환장하겠네 아.. this.head.next가 아니라
 this.tail.next였다... */
 let list = new singleLinked();
 
 console.log(list);
-list.unshift("Hi");
-
-console.log(list.remove(0));
-console.log(list);
+list.unshift("1");
+list.push("2");
+list.push("3");
+list.push("4");
+list.push("5");
+console.log(list.reverse());
+console.log(list.head.next);
