@@ -140,6 +140,19 @@ class singleLinked {
     this.length++;
     return true;
   }
+  remove(index) {
+    if (index < 0 || index > this.length - 1) return undefined;
+    let preTargetNodeOnIndex = this.get(index - 1);
+    let targetNodeOnIndex = preTargetNodeOnIndex.next;
+    if (index === 0) {
+      return this.shift();
+    } else if (index === this.length - 1) {
+      return this.pop();
+    }
+    preTargetNodeOnIndex.next = targetNodeOnIndex.next;
+    this.length--;
+    return targetNodeOnIndex;
+  }
 }
 /* 아니~ 왜 똑같이 따라쳤는데도 안돼????? 환장하겠네 아.. this.head.next가 아니라
 this.tail.next였다... */
@@ -147,9 +160,6 @@ let list = new singleLinked();
 
 console.log(list);
 list.unshift("Hi");
-list.push("I");
-list.push("am");
-list.push("thirty two");
-list.push("years old");
-console.log(list.insert(1, "everyone"));
-console.log(list.head.next);
+
+console.log(list.remove(0));
+console.log(list);
