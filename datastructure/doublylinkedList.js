@@ -96,6 +96,7 @@ class DoublyLinkedList {
         조건문 작성하면 될 듯) */
     if (index < 0 || index > this.length) return false;
     if (index === 0) {
+      // return !!this.unshift(val)도 가능하다
       this.unshift(val);
       return true;
     } else if (index === this.length) {
@@ -112,6 +113,20 @@ class DoublyLinkedList {
     this.length++;
     return true;
   }
+  remove(index) {
+    if (index < 0 || index > this.length) return undefined;
+    if (index === 0) return this.shift();
+    if (index === this.length - 1) return this.pop();
+    let targetNode = this.get(index);
+    let prevNode = targetNode.prev;
+    let nextNode = targetNode.next;
+    prevNode.next = nextNode;
+    nextNode.prev = prevNode;
+    targetNode.prev = null;
+    targetNode.next = null;
+    this.length--;
+    return targetNode;
+  }
 }
 
 const DblLinkedList = new DoublyLinkedList();
@@ -119,6 +134,6 @@ DblLinkedList.push(1);
 DblLinkedList.push(2);
 DblLinkedList.push(3);
 DblLinkedList.push(4);
-console.log(DblLinkedList.insert(4, "하이"));
+console.log(DblLinkedList.remove(1));
 
-console.log(DblLinkedList);
+console.log(DblLinkedList.head.next);
