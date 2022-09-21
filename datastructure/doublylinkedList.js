@@ -24,10 +24,25 @@ class DoublyLinkedList {
     this.length++;
     return this;
   }
+  pop() {
+    if (this.length === 0) return undefined;
+    let poppedNode = this.tail;
+    if (this.length === 1) {
+      this.head = null;
+      this.tail = null;
+    } else {
+      this.tail = this.tail.prev;
+      poppedNode.prev = null;
+      this.tail.next = null;
+    }
+    this.length--;
+    return poppedNode;
+  }
 }
 
 const DblLinkedList = new DoublyLinkedList();
 DblLinkedList.push(1);
 DblLinkedList.push(2);
 DblLinkedList.push(3);
+console.log(DblLinkedList.pop());
 console.log(DblLinkedList);
