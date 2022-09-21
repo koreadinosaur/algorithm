@@ -38,11 +38,26 @@ class DoublyLinkedList {
     this.length--;
     return poppedNode;
   }
+  shift() {
+    if (this.length === 0) return undefined;
+    let shiftedHead = this.head;
+    if (this.length === 1) {
+      this.head = null;
+      this.tail = null;
+    } else {
+      this.head = shiftedHead.next;
+      this.head.prev = null;
+      shiftedHead.next = null;
+    }
+    this.length--;
+    return shiftedHead;
+  }
 }
 
 const DblLinkedList = new DoublyLinkedList();
 DblLinkedList.push(1);
 DblLinkedList.push(2);
 DblLinkedList.push(3);
-console.log(DblLinkedList.pop());
+console.log(DblLinkedList.shift());
+
 console.log(DblLinkedList);
