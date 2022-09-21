@@ -83,11 +83,42 @@ class DoublyLinkedList {
     }
     return targetNode;
   }
+  set(index, val) {
+    let targetNode = this.get(index);
+    if (targetNode) {
+      targetNode.val = val;
+      return true;
+    }
+    return false;
+  }
+  insert(index, val) {
+    /* index가 length보다 크거나, 음수면 false반환(get으로 얻은 변수로
+        조건문 작성하면 될 듯) */
+    if (index < 0 || index > this.length) return false;
+    if (index === 0) {
+      this.unshift(val);
+      return true;
+    } else if (index === this.length) {
+      this.push(val);
+      return true;
+    }
+    let targetNode = this.get(index - 1);
+    let newNode = new Node(val);
+    let nextNode = targetNode.next;
+    targetNode.next = newNode;
+    newNode.next = nextNode;
+    newNode.prev = targetNode;
+    nextNode.prev = newNode;
+    this.length++;
+    return true;
+  }
 }
 
 const DblLinkedList = new DoublyLinkedList();
-for (let i = 0; i < 10; i++) {
-  DblLinkedList.push(i);
-}
-console.log("get : ", DblLinkedList.get(8));
+DblLinkedList.push(1);
+DblLinkedList.push(2);
+DblLinkedList.push(3);
+DblLinkedList.push(4);
+console.log(DblLinkedList.insert(4, "하이"));
+
 console.log(DblLinkedList);
