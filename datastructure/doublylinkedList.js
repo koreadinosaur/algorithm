@@ -52,12 +52,42 @@ class DoublyLinkedList {
     this.length--;
     return shiftedHead;
   }
+  unshift(val) {
+    let newNode = new Node(val);
+    if (this.length === 0) {
+      this.head = newNode;
+      this.tail = newNode;
+    } else {
+      this.head.prev = newNode;
+      newNode.next = this.head;
+      this.head = newNode;
+    }
+    this.length++;
+    return this;
+  }
+  get(index) {
+    /* 의사코드
+    1. index가 length보다 같거나 클 경우, 음수일 경우 null 반환
+    2. length /2 보다 작은지 큰지 확인 */
+    if (index >= this.length || index < 0) return null;
+    let targetNode = this.head;
+    if (index <= this.length / 2) {
+      for (let i = 0; i < index; i++) {
+        targetNode = targetNode.next;
+      }
+    } else {
+      targetNode = this.tail;
+      for (let i = this.length - 1; i > index; i--) {
+        targetNode = targetNode.prev;
+      }
+    }
+    return targetNode;
+  }
 }
 
 const DblLinkedList = new DoublyLinkedList();
-DblLinkedList.push(1);
-DblLinkedList.push(2);
-DblLinkedList.push(3);
-console.log(DblLinkedList.shift());
-
+for (let i = 0; i < 10; i++) {
+  DblLinkedList.push(i);
+}
+console.log("get : ", DblLinkedList.get(8));
 console.log(DblLinkedList);
