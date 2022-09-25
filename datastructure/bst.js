@@ -24,22 +24,21 @@ class BinarySearchTree {
     if (!this.root) {
       this.root = newNode;
     } else {
-      let parentNode = this.root;
+      let currentNode = this.root;
       while (true) {
-        if (parentNode.value > newNode.value) {
-          if (parentNode.left) {
-            parentNode = parentNode.left;
-            continue;
+        if (currentNode.value === val) return undefined;
+        if (currentNode.value > newNode.value) {
+          if (currentNode.left) {
+            currentNode = currentNode.left;
           } else {
-            parentNode.left = newNode;
+            currentNode.left = newNode;
             break;
           }
         } else {
-          if (parentNode.right) {
-            parentNode = parentNode.right;
-            continue;
+          if (currentNode.right) {
+            currentNode = currentNode.right;
           } else {
-            parentNode.right = newNode;
+            currentNode.right = newNode;
             break;
           }
         }
@@ -47,6 +46,33 @@ class BinarySearchTree {
     }
     return this;
   }
+  find(val) {
+    if (this.root === null) return false;
+    let currentNode = this.root;
+    while (true) {
+      if (currentNode.value === val) return true;
+      if (currentNode.value > val) {
+        if (currentNode.left) {
+          currentNode = currentNode.left;
+        } else {
+          return false;
+        }
+      } else {
+        if (currentNode.right) {
+          currentNode = currentNode.right;
+        } else {
+          return false;
+        }
+      }
+    }
+    /* 리팩토링 필요 */
+  }
 }
 
 const bst = new BinarySearchTree();
+bst.insert(20);
+bst.insert(10);
+bst.insert(30);
+bst.insert(15);
+console.log(bst);
+console.log(bst.find(16));
