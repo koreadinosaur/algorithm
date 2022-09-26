@@ -67,6 +67,71 @@ class BinarySearchTree {
     }
     /* 리팩토링 필요 */
   }
+  BreadthFirstSearch() {
+    /* 의사코드 
+    1. 변수 queue 생성 : 큐(선입선출) 노드들을 큐에 저장(enqueue)
+    2. visited 변수 생성(배열)
+    3. queue에 Root 저장
+    4. queue에 있는 value들을 dequeue해서 visited에 저장
+    5. visited에 들어온 dequeued된 값의 left, right를 확인해서 존재하면 enqueue
+    6. 마지막에 visited 리턴.
+    7. 매우 어렵다. */
+    const queue = new Queue();
+    let visitedTreeNode = [];
+    queue.enqueue(bst.root);
+    while (queue.size > 0) {
+      if (queue.first.value.left) {
+        queue.enqueue(queue.first.value.left);
+      }
+      if (queue.first.value.right) {
+        queue.enqueue(queue.first.value.right);
+      }
+      visitedTreeNode.push(queue.first.value.value);
+      queue.dequeue();
+    }
+    return visitedTreeNode;
+  }
+}
+
+class Queue {
+  constructor() {
+    this.first = null;
+    this.last = null;
+    this.size = 0;
+  }
+  /*
+  로직 
+  1.맨 뒤에 추가해서, 맨 앞에서 제거하는 방법
+  2. 맨 앞에 추가해서, 맨 뒤에서 제거하는 방법 */
+  enqueue(val) {
+    let newNode = new queueNode(val);
+    if (this.size === 0) {
+      this.first = newNode;
+      this.last = newNode;
+    } else {
+      this.last.next = newNode;
+      this.last = newNode;
+    }
+    return ++this.size;
+  }
+  dequeue() {
+    if (this.size === 0) return null;
+    let dequeuedNode = this.first;
+    if (this.size === 1) {
+      this.last = null;
+    }
+    this.first = this.first.next;
+    dequeuedNode.next = null;
+    this.size--;
+    return dequeuedNode;
+  }
+}
+
+class queueNode {
+  constructor(value) {
+    this.value = value;
+    this.next = null;
+  }
 }
 
 const bst = new BinarySearchTree();
@@ -74,5 +139,8 @@ bst.insert(20);
 bst.insert(10);
 bst.insert(30);
 bst.insert(15);
-console.log(bst);
-console.log(bst.find(16));
+bst.insert(5);
+bst.insert(25);
+bst.insert(35);
+const bstSearch = bst.BreadthFirstSearch();
+console.log(bstSearch);
