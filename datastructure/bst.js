@@ -109,8 +109,8 @@ class BinarySearchTree {
     4.  */
     let visitedTreeNode = [];
     let queue = []; //원래는 BreadthFirstSearch()에서처럼 queue를 만들어서 해야함.
-    let currentTargetNode = this.root;
-    queue.push(currentTargetNode);
+    /*     let currentTargetNode = this.root;
+        queue.push(currentTargetNode);
     function pushChildToQueue(node) {
       node.left && queue.push(node.left);
       node.right && queue.push(node.right);
@@ -120,7 +120,14 @@ class BinarySearchTree {
       pushChildToQueue(currentTargetNode);
       visitedTreeNode.push(queue[0].value);
       queue.shift();
+    } 
+     */
+    function pushChildToVisitedTreeNode(node) {
+      visitedTreeNode.push(node.value);
+      node.left && pushChildToVisitedTreeNode(node.left);
+      node.right && pushChildToVisitedTreeNode(node.right);
     }
+    pushChildToVisitedTreeNode(this.root);
     return visitedTreeNode;
   }
 }
