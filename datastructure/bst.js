@@ -91,6 +91,38 @@ class BinarySearchTree {
     }
     return visitedTreeNode;
   }
+  searchChildNodes(node) {
+    if (node === null) return;
+    console.log(node);
+    let leftChildNode = node.left && this.searchChildNodes(node.left);
+    let rightChildNode = node.right && this.searchChildNodes(node.right);
+    return [leftChildNode, rightChildNode];
+  }
+  DFS() {
+    /* 의사코드
+    1. visited 변수 선언
+    2. current 변수에 root 저장
+    3. 헬퍼함수 생성(preOrder) - 노드의 값을 return할 변수에 저장하는 역할
+    - 이 함수는 재귀적으로 호출한다. 노드의 left나 right가 있으면 같은 함수를
+    호출한다.
+    - 아니 변수에 저장한다는 역할이 뭐지?? push를 어떻게 한다는 거임.
+    4.  */
+    let visitedTreeNode = [];
+    let queue = []; //원래는 BreadthFirstSearch()에서처럼 queue를 만들어서 해야함.
+    let currentTargetNode = this.root;
+    queue.push(currentTargetNode);
+    function pushChildToQueue(node) {
+      node.left && queue.push(node.left);
+      node.right && queue.push(node.right);
+    }
+    while (queue.length > 0) {
+      currentTargetNode = queue[0];
+      pushChildToQueue(currentTargetNode);
+      visitedTreeNode.push(queue[0].value);
+      queue.shift();
+    }
+    return visitedTreeNode;
+  }
 }
 
 class Queue {
@@ -142,5 +174,5 @@ bst.insert(15);
 bst.insert(5);
 bst.insert(25);
 bst.insert(35);
-const bstSearch = bst.BreadthFirstSearch();
-console.log(bstSearch);
+const dfsSearch = bst.DFS();
+console.log(dfsSearch);
