@@ -54,10 +54,32 @@ class HashTable {
     }
     return undefined;
   }
+  keys() {
+    let flattedMap = this.keyMap.flat();
+    let keys = [];
+    flattedMap.map((item) => {
+      if (keys.indexOf(item[0]) === -1) {
+        keys.push(item[0]);
+      }
+    });
+    return keys;
+  }
+  values() {
+    let flattedMap = this.keyMap.flat();
+    let values = [];
+    flattedMap.map((item) => {
+      if (values.indexOf(item[1]) === -1) {
+        values.push(item[1]);
+      }
+    });
+    return values;
+  }
 }
 
-let hashTable = new HashTable();
+let hashTable = new HashTable(10);
 hashTable.setHash("ALeeSoonShin", "#15cbaq");
-hashTable.setHash("ALeeSoonShin", "#60jihz");
-
-console.log(hashTable.getHash("ALeeSoonShin"));
+hashTable.setHash("segh", "#606543");
+hashTable.setHash("hheta", "#812945");
+hashTable.setHash("jjhfg", "#091252");
+hashTable.setHash("qwet", "#619125");
+console.log(hashTable.keys());
