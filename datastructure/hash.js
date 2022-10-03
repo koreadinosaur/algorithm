@@ -6,9 +6,10 @@
 a면 1, b면 2, 이런식으로 출력됨. */
 function hash(string, length) {
   let result = 0;
-  for (let key of string) {
-    let hashedKey = key.charCodeAt(0) - 96;
-    result = (result + hashedKey) % length;
+  let PRIME_NUMBER = 31;
+  for (let i = 0; i< Math.min(string.length, 100)) {
+    let hashedKey = string[i].charCodeAt(0) - 96;
+    result = (result * PRIME_NUMBER + hashedKey) % length;
   }
   return result;
 }
