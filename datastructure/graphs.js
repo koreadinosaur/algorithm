@@ -14,9 +14,29 @@ class Graph {
     this.adjacencyList[vertex1].push(vertex2);
     this.adjacencyList[vertex2].push(vertex1);
   }
+  removeEdge(vertex1, vertex2) {
+    this.adjacencyList[vertex1] = this.adjacencyList[vertex1].filter(
+      (item) => item !== vertex2
+    );
+    this.adjacencyList[vertex2] = this.adjacencyList[vertex2].filter(
+      (item) => item !== vertex1
+    );
+  }
+  removeVertex(vertex) {
+    this.adjacencyList[vertex].map((item) => {
+      this.removeEdge(item, vertex);
+    });
+    delete this.adjacencyList[vertex];
+  }
 }
 let graph = new Graph();
 graph.addVertex("TOKYO");
 graph.addVertex("SEOUL");
+graph.addVertex("Taiwan");
+graph.addVertex("Turkey");
+graph.addEdge("TOKYO", "Taiwan");
 graph.addEdge("TOKYO", "SEOUL");
+graph.addEdge("Turkey", "SEOUL");
+graph.addEdge("Taiwan", "SEOUL");
+graph.removeVertex("SEOUL");
 console.log(graph);
