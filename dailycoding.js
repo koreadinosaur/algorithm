@@ -1,18 +1,20 @@
-/* 코플릿 11번 */
-function removeExtremes(arr) {
+/* 12번 좌표찾기 */
+function findBugInApples(arr) {
   // TODO: 여기에 코드를 작성합니다.
-  let minLengthIndex = 0;
-  let maxLengthIndex = 0;
-  for (let i = 1; i < arr.length; i++) {
-    minLengthIndex =
-      arr[minLengthIndex].length >= arr[i].length ? i : minLengthIndex;
-    maxLengthIndex =
-      arr[maxLengthIndex].length <= arr[i].length ? i : maxLengthIndex;
+  let matrixCoordinate = [];
+  for (let i = 0; i < arr.length; i++) {
+    if (arr[i].indexOf("B") !== -1) {
+      matrixCoordinate.push(i);
+      matrixCoordinate.push(arr[i].indexOf("B"));
+    }
   }
-  return arr.filter(
-    (item, index) => index !== minLengthIndex && index !== maxLengthIndex
-  );
+  return matrixCoordinate;
 }
-
-const test = removeExtremes(["a", "b", "c", "def"]);
-console.log(test);
+output = findBugInApples([
+  ["A", "A", "A", "A", "A"],
+  ["A", "B", "A", "A", "A"],
+  ["A", "A", "A", "A", "A"],
+  ["A", "A", "A", "A", "A"],
+  ["A", "A", "A", "A", "A"],
+]);
+console.log(output); //[1, 1]
