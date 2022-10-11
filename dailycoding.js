@@ -36,4 +36,19 @@ function superIncreasing(arr) {
   return isLargerThanSum;
 }
 output = superIncreasing([1, 3, 5, 9]);
-console.log(output); */
+console.log(output);
+
+-------------
+15번
+function modulo(num1, num2) {
+  // TODO: 여기에 코드를 작성합니다.
+  if (num2 === 0) return "Error: cannot divide by zero";
+  let share = 0;
+  while (num1 >= num2) {
+    num1 = num1 - num2;
+    share++;
+  }
+  return num1;
+}
+let output = modulo(25, 4);
+console.log(output); // --> 1*/
