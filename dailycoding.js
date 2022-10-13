@@ -51,4 +51,19 @@ function modulo(num1, num2) {
   return num1;
 }
 let output = modulo(25, 4);
-console.log(output); // --> 1*/
+console.log(output); // --> 1
+---------------------
+17번
+Math.sqrt 쓰지 않고 제곱근 구하기
+
+  let rootNum = 1;
+
+  while (num !== rootNum ** 2) {
+    if (Number((rootNum ** 2).toFixed(2)) === num) break;
+    if (rootNum > num) break;
+    console.log(rootNum);
+    rootNum = (rootNum + num / rootNum) / 2;
+  }
+  return +rootNum.toFixed(2);
+  
+*/
