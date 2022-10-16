@@ -66,4 +66,23 @@ Math.sqrt 쓰지 않고 제곱근 구하기
   }
   return +rootNum.toFixed(2);
   
+-------------------------------
+18번
+function numberSearch(str) {
+  // TODO: 여기에 코드를 작성합니다.
+  if (str === "") return 0;
+  str = str.split(" ").join("");
+  let sum = 0;
+  for (let i = 0; i < str.length; i++) {
+    if (!Number.isNaN(Number(str[i]))) {
+      sum += Number(str[i]);
+      str = str.slice(0, i) + str.slice(i + 1);
+      i--;
+    }
+  }
+  return Math.round(sum / str.length);
+}
+
+output = numberSearch("Hello6 9World 2, Nic8e D7ay!");
+console.log(output); // --> 2
 */
