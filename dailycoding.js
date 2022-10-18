@@ -111,4 +111,26 @@ function decryptCaesarCipher(str, secret) {
 }
 output = decryptCaesarCipher("nzop delepd dfaazced jzf", 11);
 console.log(output); // --> world
+
+20번
+function compressString(str) {
+  // TODO: 여기에 코드를 작성합니다.
+  let result = "";
+  for (let i = 0; i < str.length; i++) {
+    let char = str[i];
+    let j = i;
+    while (char === str[j]) {
+      j++;
+    }
+    if (j - i >= 3) {
+      result += `${j - i}${str[i]}`;
+      i = j - 1;
+    } else {
+      result += `${str[i]}`;
+    }
+  }
+  return result;
+}
+let output = compressString("wwwggoppopppp");
+console.log(output); // --> 3wggoppo4p
 */
