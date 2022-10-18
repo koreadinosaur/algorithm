@@ -85,4 +85,30 @@ function numberSearch(str) {
 
 output = numberSearch("Hello6 9World 2, Nic8e D7ay!");
 console.log(output); // --> 2
+
+-----------------------------
+
+19번
+function decryptCaesarCipher(str, secret) {
+  // TODO: 여기에 코드를 작성합니다.
+  let asciiCode = [];
+  for (let i = 0; i < str.length; i++) {
+    asciiCode.push(str[i].charCodeAt(0));
+    console.log(str[i].charCodeAt(0));
+  }
+
+  const result = asciiCode.map((item) => {
+    if (item === 32) {
+      return " ";
+    }
+    if (item - secret < 97) {
+      let newCode = 123 - (97 - (item - secret));
+      return String.fromCharCode(newCode);
+    }
+    return String.fromCharCode(item - secret);
+  });
+  return result.join("");
+}
+output = decryptCaesarCipher("nzop delepd dfaazced jzf", 11);
+console.log(output); // --> world
 */
