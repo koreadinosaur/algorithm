@@ -133,4 +133,23 @@ function compressString(str) {
 }
 let output = compressString("wwwggoppopppp");
 console.log(output); // --> 3wggoppo4p
+----------------------------------------
+section3
+21번
+const largestProductOfThree = function (arr) {
+  // TODO: 여기에 코드를 작성합니다.
+  let maxNum = -Infinity;
+  for (let i = 0; i < arr.length - 2; i++) {
+    for (let j = i + 1; j < arr.length - 1; j++) {
+      for (let k = j + 1; k < arr.length; k++) {
+        maxNum =
+          arr[i] * arr[j] * arr[k] > maxNum ? arr[i] * arr[j] * arr[k] : maxNum;
+        console.log(arr[i], arr[j], arr[k], arr[i] * arr[j] * arr[k]);
+      }
+    }
+  }
+  return maxNum;
+};
+output = largestProductOfThree([-5, -4, -3, -2, -1]);
+console.log(output);
 */
