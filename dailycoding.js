@@ -152,4 +152,20 @@ const largestProductOfThree = function (arr) {
 };
 output = largestProductOfThree([-5, -4, -3, -2, -1]);
 console.log(output);
+
+22번 피보나치 시간복잡도 O(n)
+  let devidedNFibo = subfibosacci(Math.ceil(n / 2));
+  let nMinusFibo = subfibosacci(Math.ceil(n / 2) - 1);
+
+  function subfibosacci(x) {
+    if (x <= 0) return 0;
+    if (x <= 2) return 1;
+    return subfibosacci(x - 1) + subfibosacci(x - 2);
+  }
+  function assistantFibo(x) {
+    if (x === Math.ceil(n / 2)) return devidedNFibo;
+    if (x === Math.ceil(n / 2) - 1) return nMinusFibo;
+    return assistantFibo(x - 1) + assistantFibo(x - 2);
+  }
+  return assistantFibo(n);
 */
