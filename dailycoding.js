@@ -1,5 +1,5 @@
 /* 12번 좌표찾기 */
-function findBugInApples(arr) {
+/* function findBugInApples(arr) {
   // TODO: 여기에 코드를 작성합니다.
   let matrixCoordinate = [];
   for (let i = 0; i < arr.length; i++) {
@@ -17,7 +17,7 @@ output = findBugInApples([
   ["A", "A", "A", "A", "A"],
   ["A", "A", "A", "A", "A"],
 ]);
-console.log(output); //[1, 1]
+console.log(output); //[1, 1] */
 
 /* 14번 superIncreasing 
 function superIncreasing(arr) {
@@ -169,3 +169,27 @@ console.log(output);
   }
   return assistantFibo(n);
 */
+
+/* 23번 버블 정렬 
+function swap(array, index1, index2) {
+  [array[index1], array[index2]] = [array[index2], array[index1]];
+}
+
+const bubbleSort = function (arr) {
+  // TODO: 여기에 코드를 작성합니다.
+
+  for (let i = 0; i < arr.length - 1; i++) {
+    let isSwap = false;
+    for (let j = 0; j < arr.length - 1 - i; j++) {
+      if (arr[j] > arr[j + 1]) {
+        swap(arr, j, j + 1);
+        isSwap = true;
+      }
+    }
+    if (!isSwap) return arr;
+  }
+  return arr;
+};
+
+let output = bubbleSort([8, 5, 2, 1, 3, 6]);
+console.log(output); // --> [1, 2, 3] */
