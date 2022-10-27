@@ -193,3 +193,24 @@ const bubbleSort = function (arr) {
 
 let output = bubbleSort([8, 5, 2, 1, 3, 6]);
 console.log(output); // --> [1, 2, 3] */
+
+/* 24번 부분집합 확인하기
+const isSubsetOf = function (base, sample) {
+  // TODO: 여기에 코드를 작성합니다.
+  let newArr = base.concat(sample);
+  let obj = {};
+  let isSubset = true;
+  for (let el of newArr) {
+    obj[el] = (obj[el] || 0) + 1;
+  }
+  for (let el of sample) {
+    if (obj[el] !== 2) {
+      isSubset = false;
+    }
+  }
+  return isSubset;
+};
+let base = [1, 2, 3, 4, 5];
+let sample = [1, 3];
+let output = isSubsetOf(base, sample);
+console.log(output); // --> true */
