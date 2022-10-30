@@ -12,7 +12,10 @@ let smallSquare = [];
 let largeSquare = [];
 
 for (let i = 0; i < hexagonSide.length; i++) {
-  if (hexagonSide[i][0] === hexagonSide[(i + 2) % 6][0]) {
+  if (
+    hexagonSide[i][0] === hexagonSide[(i + 2) % 6][0] &&
+    hexagonSide[(i + 1) % 6][0] === hexagonSide[(i + 3) % 6][0]
+  ) {
     smallSquare.push(hexagonSide[(i + 2) % 6][1], hexagonSide[(i + 1) % 6][1]);
     let counterSide1 =
       hexagonSide[i][0] % 2 === 0
@@ -22,14 +25,12 @@ for (let i = 0; i < hexagonSide.length; i++) {
       hexagonSide[(i + 1) % 6][0] % 2 === 0
         ? hexagonSide[(i + 1) % 6][0] - 1
         : hexagonSide[(i + 1) % 6][0] + 1;
-
     largeSquare = hexagonSide.filter(
       (item) => item[0] === counterSide1 || item[0] === counterSide2
     );
     break;
   }
 }
-
 let result =
   largeSquare[0][1] * largeSquare[1][1] - smallSquare[0] * smallSquare[1];
-console.log(String(result * theNumberOfFruits));
+console.log(result * theNumberOfFruits);
