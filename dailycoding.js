@@ -214,3 +214,29 @@ let base = [1, 2, 3, 4, 5];
 let sample = [1, 3];
 let output = isSubsetOf(base, sample);
 console.log(output); // --> true */
+/* 25 Tiling
+let tiling = function (n) {
+  // TODO: 여기에 코드를 작성합니다.
+  if (n < 2) return 1;
+  if (memoization[n]) {
+    return memoization[n];
+  } else {
+    memoization[n] = tiling(n - 1) + tiling(n - 2);
+  }
+  return memoization[n];
+};
+*/
+/* 
+26 DFS
+let dfs = function (node) {
+  // TODO: 여기에 코드를 작성합니다.
+  let visitedNode = [];
+  function pushNodeToArray(node) {
+    visitedNode.push(node.value);
+    node.children[0] && pushNodeToArray(node.children[0]);
+    node.children[1] && pushNodeToArray(node.children[1]);
+  }
+  pushNodeToArray(node);
+  return visitedNode;
+};
+*/
