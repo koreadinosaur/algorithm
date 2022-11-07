@@ -240,3 +240,30 @@ let dfs = function (node) {
   return visitedNode;
 };
 */
+/* 27번 시간복잡도 log n 으로 거듭제곱 구하기.
+function power(base, exponent) {
+  // todo: 여기에 코드를 작성합니다.
+  let number;
+  function calculate(base, exponent) {
+    if (exponent === 1) {
+      return base;
+    }
+    let result;
+    if (exponent % 2 === 1) {
+      if (number) {
+        number = (number * base) % 94906249;
+      } else {
+        number = base;
+      }
+    }
+
+    base = (base * base) % 94906249;
+    exponent = parseInt(exponent / 2);
+
+    return (result = calculate(base, exponent));
+  }
+
+  let result = calculate(base, exponent);
+  return (result * number) % 94906249;
+}
+ */
