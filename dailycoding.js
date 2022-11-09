@@ -267,3 +267,20 @@ function power(base, exponent) {
   return (result * number) % 94906249;
 }
  */
+/* 
+코플릿 28번
+let bfs = function (node) {
+  // TODO: 여기에 코드를 작성합니다.
+  let queue = [];
+  let result = [];
+  function helperBfs(node) {
+    node && result.push(node.value);
+    node && node.children.forEach((item) => queue.push(item));
+    console.log(queue);
+    if (queue.length === 0) return;
+    helperBfs(queue.shift());
+  }
+  helperBfs(node);
+  return result;
+};
+*/
