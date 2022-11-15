@@ -284,3 +284,33 @@ let bfs = function (node) {
   return result;
 };
 */
+/* const rotatedArraySearch = function (rotated, target) {
+  // TODO : 여기에 코드를 작성합니다.
+  if (Math.max(...rotated) > target) {
+    return -1;
+  }
+  let left = 0;
+  let right = rotated.length - 1;
+  let middle = Math.floor((right - left) / 2) + left;
+  while (left < right) {
+    if (rotated[middle] === target) {
+      return middle;
+    } else if (rotated[middle] > target && rotated[left] > target) {
+      left = middle - 1;
+    } else if (rotated[middle] < target && rotated[left] > target) {
+      left = middle - 1;
+    } else if (rotated[middle] > target && rotated[left] < target) {
+      right = middle + 1;
+    } else if (rotated[middle] < target && rotated[left] < target) {
+      right = middle + 1;
+    }
+
+    middle = Math.ceil((right - left) / 2) + left;
+    if (middle === right) {
+      return -1;
+    }
+  }
+  return -1;
+};
+let output = rotatedArraySearch([1, 2, 3], 5);
+console.log(output); // --> 5 */
