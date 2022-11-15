@@ -284,7 +284,9 @@ let bfs = function (node) {
   return result;
 };
 */
-/* const rotatedArraySearch = function (rotated, target) {
+/* 
+29번
+const rotatedArraySearch = function (rotated, target) {
   // TODO : 여기에 코드를 작성합니다.
   if (Math.max(...rotated) > target) {
     return -1;
@@ -314,3 +316,30 @@ let bfs = function (node) {
 };
 let output = rotatedArraySearch([1, 2, 3], 5);
 console.log(output); // --> 5 */
+/* 
+코플릿 30번
+const balancedBrackets = function (str) {
+  // TODO: 여기에 코드를 작성합니다.
+  if (str === "") return true;
+  const strArr = str.split("");
+  function removeFromArray(array, idx1) {
+    array.splice(idx1, 2);
+  }
+
+  for (let i = 0; i < strArr.length; i++) {
+    if (strArr[i] === "(" && strArr[i + 1] === ")") {
+      removeFromArray(strArr, i);
+      i = i - 2;
+    } else if (strArr[i] === "{" && strArr[i + 1] === "}") {
+      removeFromArray(strArr, i);
+      i = i - 2;
+    } else if (strArr[i] === "[" && strArr[i + 1] === "]") {
+      removeFromArray(strArr, i);
+      i = i - 2;
+    }
+  }
+  if (strArr.length === 0) return true;
+  return false;
+};
+let output = balancedBrackets("[(]{)}");
+console.log(output); */
