@@ -343,3 +343,78 @@ const balancedBrackets = function (str) {
 };
 let output = balancedBrackets("[(]{)}");
 console.log(output); */
+/* const getItemFromTwoSortedArrays = function (arr1, arr2, k) {
+  // TODO: 여기에 코드를 작성합니다.
+  let i = 0;
+  let j = 0;
+  let result;
+  while (i + j !== k) {
+    if (i >= arr1.length) {
+      j++;
+      break;
+    } else if (j >= arr2.length) {
+      i++;
+      break;
+    }
+    if (arr1[i] > arr2[j]) {
+      j++;
+      if (i + j + 2 === k) {
+        result = arr2[j];
+      }
+    } else {
+      i++;
+      if (i + j + 2 === k) {
+        result = arr1[i];
+      }
+    }
+  }
+  return result;
+};
+
+let arr1 = [1, 4, 8, 10];
+let arr2 = [2, 3, 5, 9];
+let result = getItemFromTwoSortedArrays(arr1, arr2, 6);
+console.log(result); // --> 8 */
+/* function paveBox(boxes) {
+  // TODO: 여기에 코드를 작성합니다.
+  의사코드 : queue = []
+  : boxes 반복문 순회하면서 queue에있는 요소들보다
+  숫자가 작을 때만 queue에 push
+  숫자가 크다? queue에 들어있는 사람들은 따로 저장하고 queue 비워준다.
+  people = [] 
+
+  let queue = [];
+  let people = [];
+  while (boxes.length > 0) {
+    if (queue.length === 0) {
+      queue.push(boxes.shift());
+    } else if (queue[0] >= boxes[0]) {
+      queue.push(boxes.shift());
+      if (boxes.length === 0) {
+        people.push(queue.length);
+      }
+    } else {
+      people.push(queue.length);
+      queue = [];
+      queue.push(boxes.shift());
+    }
+  }
+    for (let i = 0; i < boxes.length; i++) {
+    if (queue.length === 0) {
+      queue.push(boxes[i]);
+    } else if (queue[0] >= boxes[i]) {
+      queue.push(boxes[i]);
+      if (i === boxes.length - 1) {
+        people.push(queue.length);
+      }
+    } else {
+      people.push(queue.length);
+      queue = [];
+      queue.push(boxes[i]);
+    }
+  }
+
+  return Math.max(...people);
+}
+const result4 = paveBox([95, 90, 99, 99, 80, 99]);
+console.log(result4); */
