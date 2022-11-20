@@ -147,7 +147,7 @@ const output2 = createMatrix([[0, 6, "directed"]]);
 
 console.log(output2); */
 
-function getDirections(matrix, from, to) {
+/* function getDirections(matrix, from, to) {
   // TODO: 여기에 코드를 작성합니다.
   let visited = new Array(matrix.length).fill(false);
   function recursion(matrix, from, to) {
@@ -177,7 +177,7 @@ const matrix = [
 ];
 
 const result2 = getDirections(matrix, 0, 2);
-console.log(result2);
+console.log(result2); */
 // const result3 = getDirections(matrix, 0, 3);
 // console.log(result3);
 
@@ -211,3 +211,62 @@ const result4 = connectedVertices([
   [3, 4],
 ]);
 console.log(result4); */
+function barcode(len) {
+  // TODO: 여기에 코드를 작성하세요.
+  let minimumBarcode = "1";
+
+  /* 
+  수도코드 
+  전체적인 로직 : validation 검사 후 통과하는 숫자를
+  barcode에 더해준다.
+
+  1. validation 검사
+  vaildation 검사는 1개씩 나눠서 처음부터 끝까지
+  그 다음 2개씩 나눠서 처음부터 끝까지
+  3개씩나눠서 처음부터 끝까지
+  나눠지는 개수가 string의 길이의 절반이 될때까지 반복
+  
+  2. barcode 더하기
+    제일 작은 수를 반환해야하므로
+    validation을 통과한 숫자 중에 1부터 차례대로
+    barcode에 더해준다.
+
+    만약 validation이 모두 통과 안된다면,
+    바로 직전에 더 해진 숫자가 1이나 2이므로(더 작아서 더해진 것이므로)
+    바로 3을 더해준다.
+    
+  */
+
+  function validation(string) {
+    for (let i = 1; i <= Math.floor(string.length / 2); i++) {
+      for (let j = 0; j < string.length - i; j++) {
+        let left = string.slice(j, j + i);
+        let right = string.slice(j + i, j + i * 2);
+        console.log(left, right);
+        if (left === right) {
+          return false;
+        }
+        if (left.length !== right.length) break;
+      }
+    }
+    return true;
+  }
+  while (minimumBarcode.length !== len) {
+    if (validation(minimumBarcode + 1)) {
+      minimumBarcode += 1;
+    } else if (validation(minimumBarcode + 2)) {
+      minimumBarcode += 2;
+    } else if (validation(minimumBarcode + 3)) {
+      minimumBarcode += 3;
+    } else {
+      minimumBarcode = minimumBarcode.slice(0, -1);
+      minimumBarcode += 3;
+    }
+  }
+
+  return minimumBarcode;
+}
+// let output = barcode(3);
+// console.log(output); // "121"
+
+console.log(barcode(8));
