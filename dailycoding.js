@@ -422,7 +422,7 @@ console.log(result4); */
 /* 인접 리스트 advanced */
 // undirected graph (무향 그래프)
 // adjacency list (인접 리스트)
-class GraphWithAdjacencyList {
+/* class GraphWithAdjacencyList {
   constructor() {
     this.vertices = {};
   }
@@ -510,4 +510,331 @@ adjList.addVertex("Daejeon");
 adjList.addVertex("Busan");
 
 adjList.contains("Seoul"); // true
-adjList.contains("Jeonju"); // false
+adjList.contains("Jeonju"); // false */
+
+/* const getItemFromTwoSortedArrays = function (arr1, arr2, k) {
+  let leftIndex = 0;
+  let rightIndex = arr1.length;
+  let result = 0;
+  let count = 0;
+  function binarySearch(arr, startIndex, endIndex) {
+    while (startIndex < endIndex) {
+      let center = Math.floor((endIndex - startIndex) / 2);
+      if (arr[center] > k) {
+        endIndex = center - 1;
+      } else if (arr[center] < k) {
+        startIndex = center + 1;
+      } else {
+        result += center;
+      }
+      if (count >= arr.length) break;
+      count++;
+    }
+    if (result === 0) result += startIndex;
+  }
+  binarySearch(arr1, leftIndex, rightIndex);
+  rightIndex = arr2.length;
+  count = 0;
+  binarySearch(arr2, leftIndex, rightIndex);
+  return result;
+};
+
+let arr1 = [1, 4, 8, 10];
+let arr2 = [2, 3, 5, 9];
+let result = getItemFromTwoSortedArrays(arr1, arr2, 6);
+console.log(result); // --> 8 */
+/* function queuePrinter(bufferSize, capacities, documents) {
+  // TODO: 여기에 코드를 작성합니다.
+  let queue = new Array(bufferSize).fill(0);
+  let sum = documents[0];
+  queue[bufferSize - 1] = documents.shift();
+  let count = 1;
+  while (sum > 0) {
+    sum = sum - queue.shift();
+    if (sum + documents[0] <= capacities) {
+      let shifted = documents.shift();
+      queue.push(shifted);
+      sum += shifted;
+    } else {
+      queue.push(0);
+    }
+    count++;
+  }
+  return count;
+}
+
+let bufferSize = 2;
+let capacities = 10;
+let documents = [7, 4, 5, 6];
+
+let output = queuePrinter(bufferSize, capacities, documents);
+console.log(output); // 8 */
+/* class Tree {
+  constructor(value) {
+    // constructor로 만든 객체는 트리의 Node가 됩니다.
+    this.value = value;
+    this.children = [];
+  }
+  // 트리의 삽입 메서드를 만듭니다.
+  insertNode(value) {
+    // 값이 어떤 이름으로 만들어지고 어느 위치에 붙는지 떠올리는 것이 중요합니다.
+    // TODO: 트리에 붙게 될 childNode를 만들고, children에 넣어야 합니다.
+
+    const childNode = new Tree(value);
+    this.children.push(childNode);
+  }
+  contains(value) {
+    // TODO: 값이 포함되어 있다면 true를 반환하세요.
+    if (this.value === value) {
+      return true;
+    }
+    // TODO: 값을 찾을 때까지 children 배열을 순회하며 childNode를 탐색하세요.
+
+    for (let i = 0; i < this.children.length; i++) {
+    }
+
+    // 전부 탐색했음에도 불구하고 찾지 못했다면 false를 반환합니다.
+    return false;
+  }
+}
+const rootNode = new Tree(null);
+for (let i = 0; i <= 4; i++) {
+  if (rootNode.children[i]) {
+    rootNode.children[i].insertNode(i);
+  } else {
+    rootNode.insertNode(i);
+  }
+}
+
+const find1 = rootNode.contains(5); // false
+const find2 = rootNode.contains(1); // tru2
+console.log(find1, find2); */
+
+// graph
+/* class GraphWithAdjacencyMatrix {
+  constructor() {
+    this.matrix = [];
+  }
+
+  addVertex() {
+    //버텍스를 추가합니다.
+    const currentLength = this.matrix.length;
+    for (let i = 0; i < currentLength; i++) {
+      this.matrix[i].push(0);
+    }
+    this.matrix.push(new Array(currentLength + 1).fill(0));
+  }
+  contains(vertex) {
+    //TODO: 버텍스가 있는지 확인합니다.
+    if (vertex < this.matrix.length) {
+      return true;
+    }
+    return false;
+  }
+
+  addEdge(from, to) {
+    const currentLength = this.matrix.length;
+    if (from === undefined || to === undefined) {
+      console.log("2개의 인자가 있어야 합니다.");
+      return;
+    }
+    //TODO: 간선을 추가할 수 없는 상황에서는 추가하지 말아야 합니다.
+    if (
+      from + 1 > currentLength ||
+      to + 1 > currentLength ||
+      from < 0 ||
+      to < 0
+    ) {
+      console.log("범위가 매트릭스 밖에 있습니다.");
+      return;
+    }
+    //TODO: 간선을 추가해야 합니다.
+    this.matrix[from][to] = 1;
+  }
+}
+const adjMatrix = new GraphWithAdjacencyMatrix();
+adjMatrix.addVertex();
+adjMatrix.addVertex();
+adjMatrix.addVertex();
+adjMatrix.addEdge(0, 1);
+adjMatrix.addEdge(0, 2);
+adjMatrix.addEdge(1, 2);
+console.log(adjMatrix); */
+
+// 10번
+/* function createMatrix(edges) {
+  // TODO: 여기에 코드를 작성합니다.
+  const coordinatesArray = [];
+  edges.forEach((item) => {
+    coordinatesArray.push(item[0], item[1]);
+  });
+  const max = Math.max(...coordinatesArray);
+  const array = [];
+
+  for (let i = 0; i < max + 1; i++) {
+    array.push(new Array(max + 1).fill(0));
+  }
+  console.log(array);
+  for (let i = 0; i < edges.length; i++) {
+    let x = edges[i][0];
+    let y = edges[i][1];
+    if (edges[i][2] === "directed") {
+      array[x][y] = 1;
+    } else {
+      array[x][y] = 1;
+      array[y][x] = 1;
+    }
+  }
+  return array;
+}
+
+const output2 = createMatrix([[0, 6, "directed"]]);
+
+console.log(output2); */
+
+/* function getDirections(matrix, from, to) {
+  // TODO: 여기에 코드를 작성합니다.
+  let visited = new Array(matrix.length).fill(false);
+  function recursion(matrix, from, to) {
+    if (visited[from]) {
+      return false;
+    } else {
+      visited[from] = true;
+    }
+    if (matrix[from][to] === 1) return true;
+    for (let i = 0; i < matrix[from].length; i++) {
+      let x = matrix[from][i];
+      if (x === 1) {
+        if (recursion(matrix, i, to)) {
+          return true;
+        }
+      }
+    }
+    return false;
+  }
+  return recursion(matrix, from, to);
+}
+const matrix = [
+  [0, 1, 0, 0],
+  [0, 0, 1, 0],
+  [0, 0, 0, 1],
+  [0, 1, 0, 0],
+];
+
+const result2 = getDirections(matrix, 0, 2);
+console.log(result2); */
+// const result3 = getDirections(matrix, 0, 3);
+// console.log(result3);
+
+/* 
+12번
+function connectedVertices(edges) {
+  // TODO: 여기에 코드를 작성합니다.
+  let count = 0;
+  let queue = [];
+  while (edges.length > 0) {
+    queue.push(...edges.shift());
+    while (queue.length > 0) {
+      let flattedEdges = edges.flat();
+      let indexOfLinked = flattedEdges.indexOf(queue.shift());
+      if (indexOfLinked !== -1) {
+        let spliced = edges.splice(Math.floor(indexOfLinked / 2), 1);
+        queue.push(spliced[0][0], spliced[0][1]);
+      }
+    }
+
+    count++;
+  }
+  return count;
+}
+const result4 = connectedVertices([
+  [0, 1],
+  [5, 6],
+  [6, 4],
+  [2, 3],
+  [4, 1],
+  [3, 4],
+]);
+console.log(result4); */
+function barcode(len) {
+  // TODO: 여기에 코드를 작성하세요.
+  let minimumBarcode = "1";
+
+  /* 
+  수도코드 
+  전체적인 로직 : validation 검사 후 통과하는 숫자를
+  barcode에 더해준다.
+
+  1. validation 검사
+  vaildation 검사는 1개씩 나눠서 처음부터 끝까지
+  그 다음 2개씩 나눠서 처음부터 끝까지
+  3개씩나눠서 처음부터 끝까지
+  나눠지는 개수가 string의 길이의 절반이 될때까지 반복
+  
+  2. barcode 더하기
+    제일 작은 수를 반환해야하므로
+    validation을 통과한 숫자 중에 1부터 차례대로
+    barcode에 더해준다.
+
+    만약 validation이 모두 통과 안된다면,
+    바로 직전에 더 해진 숫자가 1이나 2이므로(더 작아서 더해진 것이므로)
+    바로 3을 더해준다.
+    
+  */
+
+/*   function validation(string) {
+    for (let i = 1; i <= Math.floor(string.length / 2); i++) {
+      for (let j = 0; j < string.length - i; j++) {
+        let left = string.slice(j, j + i);
+        let right = string.slice(j + i, j + i * 2);
+        console.log(left, right);
+        if (left === right) {
+          return false;
+        }
+        if (left.length !== right.length) break;
+      }
+    }
+    return true;
+  }
+  while (minimumBarcode.length !== len) {
+    if (validation(minimumBarcode + 1)) {
+      minimumBarcode += 1;
+    } else if (validation(minimumBarcode + 2)) {
+      minimumBarcode += 2;
+    } else if (validation(minimumBarcode + 3)) {
+      minimumBarcode += 3;
+    } else {
+      minimumBarcode = minimumBarcode.slice(0, -1);
+      minimumBarcode += 3;
+    }
+  }
+
+  return minimumBarcode;
+} */
+// let output = barcode(3);
+// console.log(output); // "121"
+
+
+/*
+코플릿 32번
+const uglyNumbers = function (n) {
+  // TODO: 여기에 코드를 작성합니다.
+  let indexOfTwo = 0;
+  let indexOfThree = 0;
+  let indexOfFive = 0;
+  let uglyNumbers = [1];
+  for (let i = 0; i < n; i++) {
+    let multiplyTwo = uglyNumbers[indexOfTwo] * 2;
+    let multiplyThree = uglyNumbers[indexOfThree] * 3;
+    let multiplyFive = uglyNumbers[indexOfFive] * 5;
+    let nextNumber = Math.min(multiplyTwo, multiplyThree, multiplyFive);
+    if (multiplyTwo === nextNumber) indexOfTwo++;
+    if (multiplyThree === nextNumber) indexOfThree++;
+    if (multiplyFive === nextNumber) indexOfFive++;
+    uglyNumbers.push(nextNumber);
+  }
+
+  return uglyNumbers[n - 1];
+};
+let result = uglyNumbers(15);
+console.log(result); */
