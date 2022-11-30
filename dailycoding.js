@@ -755,7 +755,7 @@ const result4 = connectedVertices([
   [4, 1],
   [3, 4],
 ]);
-console.log(result4); */
+console.log(result4); 
 function barcode(len) {
   // TODO: 여기에 코드를 작성하세요.
   let minimumBarcode = "1";
@@ -814,7 +814,6 @@ function barcode(len) {
 // let output = barcode(3);
 // console.log(output); // "121"
 
-
 /*
 코플릿 32번
 const uglyNumbers = function (n) {
@@ -838,3 +837,47 @@ const uglyNumbers = function (n) {
 };
 let result = uglyNumbers(15);
 console.log(result); */
+
+/* function orderOfPresentation(N, K) {
+  // TODO: 여기에 코드를 작성합니다.
+  let lessThanTarget = 0;
+  let order = 0;
+  let factorial = (n) => {
+    if (n <= 1) return 1;
+    return n * factorial(n - 1);
+  };
+  for (let i = 0; i < K.length; i++) {
+    for (let j = 0; j < i; j++) {
+      if (K[j] < K[i]) {
+        lessThanTarget++;
+      }
+    }
+    order += factorial(K.length - i - 1) * (K[i] - 1 - lessThanTarget);
+    lessThanTarget = 0;
+  }
+  return order;
+}
+
+let output = orderOfPresentation(5, [1, 3, 2, 4, 5]);
+console.log(output); // 6 */
+const powerSet = function (str) {
+  // TODO: 여기에 코드를 작성합니다.
+  const strArray = str.split("").sort();
+  const set = new Set(strArray);
+  const arrayOfUnique = Array.from(set);
+
+  const result = [];
+  function dfs(idx, subset) {
+    if (idx === arrayOfUnique.length) {
+      result.push(subset);
+      return;
+    }
+
+    dfs(idx + 1, subset);
+    dfs(idx + 1, subset + arrayOfUnique[idx]);
+  }
+  dfs(0, "");
+  return result.sort();
+};
+let output1 = powerSet("jjump");
+console.log(output1);
