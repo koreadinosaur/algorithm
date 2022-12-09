@@ -860,7 +860,7 @@ console.log(result); */
 
 let output = orderOfPresentation(5, [1, 3, 2, 4, 5]);
 console.log(output); // 6 */
-const powerSet = function (str) {
+/* const powerSet = function (str) {
   // TODO: 여기에 코드를 작성합니다.
   const strArray = str.split("").sort();
   const set = new Set(strArray);
@@ -880,4 +880,162 @@ const powerSet = function (str) {
   return result.sort();
 };
 let output1 = powerSet("jjump");
-console.log(output1);
+console.log(output1); */
+/* 
+퀵소트
+function swap(arr, idx1, idx2) {
+  [arr[idx1], arr[idx2]] = [arr[idx2], arr[idx1]];
+}
+
+function pivotHelper(arr, startIndex = 0, endIndex = arr.length + 1) {
+  let pivot = arr[startIndex];
+  let swapIndex = startIndex;
+  for (let i = startIndex + 1; i < endIndex; i++) {
+    if (pivot > arr[i]) {
+      swapIndex++;
+      swap(arr, i, swapIndex);
+    }
+  }
+  swap(arr, startIndex, swapIndex);
+  return swapIndex;
+}
+const quickSort = function (arr, start = 0, end = arr.length - 1) {
+  // TODO: 여기에 코드를 작성합니다.
+  if (start < end) {
+    let pivotIdx = pivotHelper(arr, start, end);
+    let leftArr = quickSort(arr, start, pivotIdx - 1);
+    let rightArr = quickSort(arr, pivotIdx + 1, end);
+  }
+  return arr;
+};
+let output = quickSort([3, 1, 21]);
+console.log(output); // --> [1, 3, 21] */
+
+/* 그리드 알고리즘 1번
+function movingStuff(stuff, limit) {
+  // TODO: 여기에 코드를 작성합니다.
+  function removeElementFromArray(array, index) {
+    array = [...array.slice(0, index), ...array.slice(index + 1)];
+    return array;
+  }
+  let sortedStuff = stuff.sort((a, b) => a - b);
+  let boxCount = 0;
+  for (let i = 0; i < sortedStuff.length; i++) {
+    let maxBoxIndex = i + 1;
+    if (sortedStuff[i] + sortedStuff[i + 1] > limit) {
+      boxCount++;
+      continue;
+    }
+
+    for (let j = i + 1; j < sortedStuff.length; j++) {
+      if (
+        sortedStuff[i] + sortedStuff[j] <= limit &&
+        sortedStuff[i] + sortedStuff[maxBoxIndex] <=
+          sortedStuff[i] + sortedStuff[j]
+      ) {
+        maxBoxIndex = j;
+      } else {
+        break;
+      }
+    }
+    if (sortedStuff[i] + sortedStuff[maxBoxIndex] <= limit) {
+      sortedStuff = removeElementFromArray(sortedStuff, maxBoxIndex);
+      boxCount++;
+    } else {
+      boxCount++;
+    }
+  }
+  return boxCount;
+}
+let output = movingStuff(
+  [60, 73, 80, 87, 103, 109, 119, 123, 128, 129, 136, 146, 153, 168, 182],
+  200
+);
+console.log(output);  */
+
+/* 그리디 2번
+function partTimeJob(k) {
+  // TODO: 여기에 코드를 작성하세요.
+  const coinBucket = [500, 100, 50, 10, 5, 1];
+  let remainMoney = k;
+  let coinCount = 0;
+  for (let i = 0; i < coinBucket; i++) {
+    console.log(remainMoney / coinBucket[i]);
+    coinCount += Math.floor(remainMoney / coinBucket[i]);
+    remainMoney %= coinBucket[i];
+  }
+  return coinCount;
+}
+const output1 = partTimeJob(4000);
+console.log(output1); // --> 8 */
+
+/* 
+보드게임
+function boardGame(board, operation) {
+  // TODO: 여기에 코드를 작성하세요.
+  let coordinates = [0, 0];
+  let max = board.length;
+  let operationArray = operation.split("");
+  let sum = 0;
+  for (let i = 0; i < operationArray.length; i++) {
+    switch (operationArray[i]) {
+      case "U":
+        coordinates[0] -= 1;
+        break;
+      case "R":
+        coordinates[1] += 1;
+        break;
+      case "D":
+        coordinates[0] += 1;
+        break;
+      case "L":
+        coordinates[1] -= 1;
+        break;
+      default:
+        if (
+          coordinates[0] >= max ||
+          coordinates[0] < 0 ||
+          coordinates[1] >= max ||
+          coordinates[1] < 0
+        ) {
+          return "OUT";
+        } else {
+          sum += board[coordinates[0]][coordinates[1]];
+        }
+    }
+    console.log(coordinates);
+  }
+  return sum;
+}
+const board2 = [
+  [0, 0, 1],
+  [1, 1, 1],
+  [1, 0, 0],
+];
+console.log(boardGame(board2, "UUUDD"));
+ */
+function ocean(target, type) {
+  // TODO: 여기에 코드를 작성합니다.
+  const coinArray = type;
+  let caseOfSum = 0;
+  function dfs(target, coinType, sumOfCoin, coin = 0) {
+    sumOfCoin = Number(sumOfCoin) + Number(coin);
+    for (let i = 0; i < coinType.length; i++) {
+      if (target === sumOfCoin) {
+        return caseOfSum++;
+      } else if (target < sumOfCoin + coinType[i]) {
+        return;
+      }
+      if (i < coinType.indexOf(coin)) continue;
+
+      dfs(target, coinType, sumOfCoin, coinType[i]);
+    }
+  }
+  dfs(target, coinArray, 0, 0);
+  return caseOfSum;
+}
+let t1 = performance.now();
+let output = ocean(100, [10, 20, 50, 55]);
+let t2 = performance.now();
+console.log(t2 - t1);
+console.log(output); // 4
