@@ -1014,7 +1014,7 @@ const board2 = [
 ];
 console.log(boardGame(board2, "UUUDD"));
  */
-function ocean(target, type) {
+/* function ocean(target, type) {
   // TODO: 여기에 코드를 작성합니다.
   const coinArray = type;
   let caseOfSum = 0;
@@ -1039,3 +1039,37 @@ let output = ocean(100, [10, 20, 50, 55]);
 let t2 = performance.now();
 console.log(t2 - t1);
 console.log(output); // 4
+ */
+
+const mergeSort = function (arr) {
+  // TODO: 여기에 코드를 작성합니다.
+  /* 의사코드 : 배열을 left, right로 재귀적으로 나누는 함수 하나 생성.
+  그래서 left = 재귀함수(left) right = 재귀함수(right) 이렇게 호출하고, 마지막에 return은
+  left와 right를 정렬하는 함수 호출.  */
+  function sortHelper(leftArr, rightArr) {
+    let result = [];
+    let i = 0;
+    let j = 0;
+    while (result.length !== leftArr.length + rightArr.length) {
+      if (
+        (leftArr[i] < rightArr[j] && i < leftArr.length) ||
+        j === rightArr.length
+      ) {
+        result.push(leftArr[i]);
+        i++;
+      } else {
+        result.push(rightArr[j]);
+        j++;
+      }
+    }
+    return result;
+  }
+  if (arr.length === 1) return arr;
+  let center = Math.floor(arr.length / 2);
+  let left = mergeSort(arr.slice(0, center));
+  let right = mergeSort(arr.slice(center));
+
+  return sortHelper(left, right);
+};
+let test = mergeSort([5, 4, 3, 2, 1]);
+console.log(test);
