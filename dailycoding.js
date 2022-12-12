@@ -1041,11 +1041,11 @@ console.log(t2 - t1);
 console.log(output); // 4
  */
 
-const mergeSort = function (arr) {
+/* const mergeSort = function (arr) {
   // TODO: 여기에 코드를 작성합니다.
-  /* 의사코드 : 배열을 left, right로 재귀적으로 나누는 함수 하나 생성.
-  그래서 left = 재귀함수(left) right = 재귀함수(right) 이렇게 호출하고, 마지막에 return은
-  left와 right를 정렬하는 함수 호출.  */
+// 의사코드 : 배열을 left, right로 재귀적으로 나누는 함수 하나 생성.
+//   그래서 left = 재귀함수(left) right = 재귀함수(right) 이렇게 호출하고, 마지막에 return은
+//   left와 right를 정렬하는 함수 호출. 
   function sortHelper(leftArr, rightArr) {
     let result = [];
     let i = 0;
@@ -1072,4 +1072,144 @@ const mergeSort = function (arr) {
   return sortHelper(left, right);
 };
 let test = mergeSort([5, 4, 3, 2, 1]);
-console.log(test);
+console.log(test); */
+/* const rotateMatrix = function (matrix) {
+  // TODO: 여기에 코드를 작성합니다.
+  let m = matrix[0].length;
+  let n = matrix.length;
+  let rotatedMatrix = [];
+  for (let i = 0; i < n; i++) {
+    rotatedMatrix.push(Array(m).fill(0));
+  }
+  for (let i = 0; i < n; i++) {
+    for (let j = 0; j < m; j++) {
+      rotatedMatrix[i][j] = matrix[m - j - 1][i];
+    }
+  }
+  return rotatedMatrix;
+};
+const matrix = [[1, 2, 3]];
+const rotatedMatrix = rotateMatrix(matrix);
+console.log(rotatedMatrix); // --> 13 */
+/* function rockPaperScissors(n) {
+  // TODO: 여기에 코드를 작성합니다.
+  //왜 이코드가 없으면 테스트 케이스가 통과가 안되지?
+  n = n || 3;
+  let RPS = ["rock", "paper", "scissors"];
+  let result = [];
+  function recursion(rps, selected) {
+    if (selected.length === n) return result.push(selected);
+    let rock = recursion(rps, [...selected, rps[0]]);
+    let paper = recursion(rps, [...selected, rps[1]]);
+    let scissors = recursion(rps, [...selected, rps[2]]);
+  }
+  recursion(RPS, []);
+  return result;
+}
+let output = rockPaperScissors(6);
+
+console.log(output); */
+/* function newChickenRecipe(stuffArr, choiceNum) {
+  // TODO: 여기에 코드를 작성하세요.
+  let NewStuffArr = stuffArr
+    .filter((item) => {
+      let zeroCount = 0;
+      let itemToString = String(item);
+      for (let i = 0; i < itemToString.length; i++) {
+        if (itemToString[i] === "0") zeroCount++;
+      }
+      if (zeroCount >= 3) {
+        return false;
+      } else {
+        return true;
+      }
+    })
+    .sort((a, b) => a - b);
+  let result = [];
+  function recursion(array, bucket, numberOfChoice) {
+    if (bucket.length === numberOfChoice) return result.push(bucket);
+    for (let i = 0; i < array.length; i++) {
+      let temp = array[i];
+      let newArray = array.slice(0);
+      newArray.splice(i, 1);
+      recursion(newArray, bucket.concat(temp), numberOfChoice);
+    }
+  }
+  recursion(NewStuffArr, [], choiceNum);
+  return result;
+}
+const output1 = newChickenRecipe([1, 10, 1100, 1111], 2);
+console.log(output1); */
+/* function boringBlackjack(cards) {
+  // TODO: 여기에 코드를 작성합니다.
+  let newCards = cards.slice(0);
+  let result = [];
+  let count = 0;
+  for (let i = 0; i < newCards.length - 2; i++) {
+    for (let j = i + 1; j < newCards.length - 1; j++) {
+      for (let k = j + 1; k < newCards.length; k++) {
+        result.push(cards[i] + cards[j] + cards[k]);
+      }
+    }
+  }
+
+  function isPrime(n) {
+    for (let i = 2; i <= Math.floor(Math.sqrt(n)); i++) {
+      if (n % i === 0) return false;
+    }
+    return true;
+  }
+  result.forEach((item) => {
+    if (isPrime(item)) count++;
+  });
+  return count;
+}
+let output = boringBlackjack([1, 2, 3, 4]);
+console.log(output); // 1 */
+/*
+8번 미완성. 
+function gcd(a, b) {
+  while (b !== 0) {
+    let r = a % b;
+    a = b;
+    b = r;
+  }
+  return a;
+}
+function divideChocolateStick(M, N) {
+  // TODO: 여기에 코드를 작성합니다.
+  let result = [];
+  let max = gcd(M, N);
+  const sqrt = Math.floor(Math.sqrt(max));
+  for (let i = 1; i <= sqrt; i++) {
+    if (max % i === 0) {
+      result.push([i, M / i, N / i]);
+      if (i * i < sqrt) {
+        let otherFactor = max / i;
+        result.push([otherFactor, M / otherFactor, N / otherFactor]);
+      }
+    }
+  }
+  return result;
+}
+
+let M = 15;
+let N = 30;
+let output = divideChocolateStick(M, N);
+console.log(output); */
+function missHouseMeal(sideDishes) {
+  // TODO: 여기에 코드를 작성합니다.
+  let result = [];
+  sideDishes.sort();
+  function recursion(array, start) {
+    result.push(array);
+    for (let i = start; i < sideDishes.length; i++) {
+      recursion([...array, sideDishes[i]], i + 1);
+    }
+  }
+  recursion([], 0);
+
+  return result;
+}
+let output = missHouseMeal(["eggroll", "kimchi", "fishSoup"]);
+console.log(output);
